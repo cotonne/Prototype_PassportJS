@@ -1,8 +1,5 @@
 
-/*
- * Mongoose Setup
- */
-
+//Mongoose Setup
 const MyMongoose = require('mongoose');
 const MyMongooseConfig = require('./config/MyMongoose.js');
 
@@ -34,29 +31,6 @@ app.use('/private', MyPassport.authenticate('bearer', {session: false}), Private
 // route for sign-in
 const SigninRouter = require('./routes/signin.js');
 app.use('/signin', SigninRouter);
-
-/*
-app.get('/signin/github',
-  MyPassport.authenticate('github'));
-
-app.get('/signin/github/callback',
-  MyPassport.authenticate('github', {session: false}),
-  
-  //Without JWT
-  
-  /*
-   function(req, res) {
-    res.send("Hello " + req.user.username + "!")
-  }
-  
-  
-  // With JWT
-  function(req, res) {
-    const token = jwt.sign({username: req.user.username}, process.env.JWT_SECRET);
-    res.json({token});
-  }
-);
-*/
 
 
 /* Start Express App */

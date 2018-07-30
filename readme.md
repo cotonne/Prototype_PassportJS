@@ -5,7 +5,7 @@ This application is a demonstration prototype just to show how to use PassportJS
 
 * Download this prototype
 
-$ git clone
+$ git clone https://github.com/0xdbe/Prototype_PassportJS.git
 
 * Install required dependencies
 
@@ -16,7 +16,9 @@ $ npm install
 Homepage URL: http://127.0.0.1:3000
 Authorization callback URL : http://127.0.0.1:3000/signin/github/callback
 
-* Run it
+* start your mongoDB server (on your localhost)
+
+* Run this prototype
 
 $ PORT=3000 HOST=127.0.0.1 CLIENT_ID=xxxxxxxxxxxxxxxx CLIENT_SECRET=yyyyyyyyyyyyyyyyyyyyy JWT_SECRET=zzzzzzz node app.js
  
