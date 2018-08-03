@@ -1,12 +1,13 @@
 pipeline {
   stages {
        stage('Checkout'){
-
-          checkout scm
+          steps {
+            checkout scm
+          }
        }
 
        stage('Test'){
-
+         steps {
          env.NODE_ENV = "test"
 
          print "Environment will be : ${env.NODE_ENV}"
@@ -15,7 +16,7 @@ pipeline {
          sh 'npm prune'
          sh 'npm install'
          sh 'npm test'
-
+         }
        }
 
        stage('Audit') {
@@ -29,11 +30,14 @@ pipeline {
          withSonarQubeEnv('My SonarQube Server') {
            sh "${scannerHome}/bin/sonar-scanner"
          }
+        
        }
 
        stage('Deploy'){
-         echo 'Push to Dev'
-         sh './pushToDev.sh'
+         steps {
+           echo 'Push to Dev'
+           sh './pushToDev.sh'
+         }
        }
 
 
@@ -54,16 +58,11 @@ pipeline {
        }
 
        stage('Cleanup'){
-
-         echo 'prune and cleanup'
-         sh 'npm prune'
-         sh 'rm node_modules -rf'
-
-         mail body: 'project build successful',
-                     from: 'xxxx@yyyyy.com',
-                     replyTo: 'xxxx@yyyy.com',
-                     subject: 'project build successful',
-                     to: 'yyyyy@yyyy.com'
+         steps {
+           echo 'prune and cleanup'
+           sh 'npm prune'
+           sh 'rm node_modules -rf'
+         }
        }
 
   }
