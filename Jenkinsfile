@@ -1,4 +1,4 @@
-node('Prototype_PassportJS') {
+pipeline {
 
 
     currentBuild.result = "SUCCESS"
