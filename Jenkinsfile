@@ -1,5 +1,5 @@
 pipeline {
-
+  stages {
        stage('Checkout'){
 
           checkout scm
@@ -66,6 +66,6 @@ pipeline {
                      to: 'yyyyy@yyyy.com'
        }
 
-
+  }
 
 }
