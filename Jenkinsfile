@@ -8,29 +8,29 @@ pipeline {
 
        stage('Test'){
          steps {
-         env.NODE_ENV = "test"
+           print "Environment will be : ${env.NODE_ENV}"
 
-         print "Environment will be : ${env.NODE_ENV}"
-
-         sh 'node -v'
-         sh 'npm prune'
-         sh 'npm install'
-         sh 'npm test'
+           sh 'node -v'
+           sh 'npm prune'
+           sh 'npm install'
+           sh 'npm test'
          }
        }
 
        stage('Audit') {
+         steps {
 
-
+         }
        }
  
        stage('Sonar'){
-         def scannerHome = tool 'SonarQube Scanner 2.8';
+         steps {
+           def scannerHome = tool 'SonarQube Scanner 2.8';
 
-         withSonarQubeEnv('My SonarQube Server') {
-           sh "${scannerHome}/bin/sonar-scanner"
+           withSonarQubeEnv('My SonarQube Server') {
+             sh "${scannerHome}/bin/sonar-scanner"
+           }
          }
-        
        }
 
        stage('Deploy'){
@@ -42,19 +42,24 @@ pipeline {
 
 
        stage('OWASP Zap') {
-
+         steps {
+         }
        }
 
 
        stage('Mozilla Observatory') {
+         steps {
 
+         }
        }
 
     
        stage('Custom') {
-         // SQLMap?
-         // OAuth test/vulnerability scanner?
-         // Metasploit?
+         steps {
+           // SQLMap?
+           // OAuth test/vulnerability scanner?
+           // Metasploit?
+         }
        }
 
        stage('Cleanup'){
