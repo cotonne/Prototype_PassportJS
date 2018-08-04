@@ -1,4 +1,5 @@
 pipeline {
+  agent any
   stages {
        stage('Checkout'){
           steps {
@@ -19,7 +20,7 @@ pipeline {
 
        stage('Audit') {
          steps {
-
+           sh 'npm audit'
          }
        }
  
@@ -37,30 +38,32 @@ pipeline {
          steps {
            echo 'Push to Dev'
            sh './pushToDev.sh'
+           env.TARGET = 'target'
          }
        }
 
 
        stage('OWASP Zap') {
          steps {
+           sh 'zap-cli quick-scan --self-contained http://${env.TARGET}'
          }
        }
 
 
        stage('Mozilla Observatory') {
          steps {
-
+           sh 'httpobs-local-scan --http-port 8080 ${env.TARGET}''
          }
        }
 
     
-       stage('Custom') {
-         steps {
-           // SQLMap?
-           // OAuth test/vulnerability scanner?
-           // Metasploit?
-         }
-       }
+//       stage('Custom') {
+//         steps {
+//           // SQLMap?/MongoDBMap
+//           // OAuth test/vulnerability scanner?
+//           // Metasploit?
+//         }
+//       }
 
        stage('Cleanup'){
          steps {
