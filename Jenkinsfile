@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    env.TARGET = 'target'
+  }
   stages {
        stage('Checkout'){
           steps {
@@ -26,7 +29,7 @@ pipeline {
  
        stage('Sonar'){
          steps {
-           def scannerHome = tool 'SonarQube Scanner 2.8';
+           //def scannerHome = tool 'SonarQube Scanner 2.8';
 
            withSonarQubeEnv('My SonarQube Server') {
              sh "${scannerHome}/bin/sonar-scanner"
@@ -38,8 +41,7 @@ pipeline {
          steps {
            echo 'Push to Dev'
            sh './pushToDev.sh'
-           env.TARGET = 'target'
-         }
+           }
        }
 
 
