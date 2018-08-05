@@ -1,8 +1,8 @@
 pipeline {
   agent any
   environment {
-    env.TARGET = 'target'
-  }
+    TARGET = 'target'
+  }
   stages {
        stage('Checkout'){
           steps {
