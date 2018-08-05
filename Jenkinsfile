@@ -14,7 +14,7 @@ pipeline {
          steps {
            print "Environment will be : ${env.TARGET}"
 
-           node -v
+           sh 'node -v'
            sh 'npm prune'
            sh 'npm install'
            sh 'npm test'
