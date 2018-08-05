@@ -32,7 +32,7 @@ pipeline {
            //def scannerHome = tool 'SonarQube Scanner 2.8';
 
            withSonarQubeEnv('My SonarQube Server') {
-             sh '/var/sonar-scanner/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner/bin/sonar-scanner'
+             sh '/var/sonar-scanner/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner'
            }
          }
        }
