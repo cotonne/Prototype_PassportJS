@@ -15,15 +15,15 @@ pipeline {
            print "Environment will be : ${env.TARGET}"
 
            node -v
-           npm prune
-           npm install
-           npm test
+           sh 'npm prune'
+           sh 'npm install'
+           sh 'npm test'
          }
        }
 
        stage('Audit') {
          steps {
-           npm audit
+           sh 'npm audit'
          }
        }
  
@@ -32,7 +32,7 @@ pipeline {
            //def scannerHome = tool 'SonarQube Scanner 2.8';
 
            withSonarQubeEnv('My SonarQube Server') {
-             ${scannerHome}/bin/sonar-scanner
+             sh '${scannerHome}/bin/sonar-scanner'
            }
          }
        }
@@ -40,21 +40,21 @@ pipeline {
        stage('Deploy'){
          steps {
            echo 'Push to Dev'
-           ./pushToDev.sh
+           sh './pushToDev.sh'
            }
        }
 
 
        stage('OWASP Zap') {
          steps {
-           zap-cli quick-scan --self-contained http://${env.TARGET}
+           sh 'zap-cli quick-scan --self-contained http://${env.TARGET}'
          }
        }
 
 
        stage('Mozilla Observatory') {
          steps {
-           httpobs-local-scan --http-port 8080 ${env.TARGET}
+           sh 'httpobs-local-scan --http-port 8080 ${env.TARGET}'
          }
        }
 
