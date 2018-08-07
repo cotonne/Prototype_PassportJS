@@ -1,3 +1,5 @@
 #!/bin/sh
 
-node app.js
+node app.js &
+
+sleep 10
