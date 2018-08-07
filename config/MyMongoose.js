@@ -1,4 +1,4 @@
 module.exports = {
-  'database': 'mongodb://localhost:27017/MyApp'
+  'database': 'mongodb://'+process.env.MONGO+':27017/MyApp'
 }; 
  
