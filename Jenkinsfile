@@ -51,7 +51,7 @@ pipeline {
 
        stage('Mozilla Observatory') {
          steps {
-           sh 'httpobs-local-scan --http-port ${env.PORT} ${env.HOST}'
+           sh "httpobs-local-scan --http-port ${env.PORT} ${env.HOST}"
          }
        }
 
