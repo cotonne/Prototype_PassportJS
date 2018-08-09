@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    TARGET = 'target'
-  }
   stages {
        stage('Checkout'){
           steps {
@@ -12,7 +9,7 @@ pipeline {
 
        stage('Test'){
          steps {
-           print "Environment will be : ${env.TARGET}"
+           print "Environment will be : ${env.PORT}:${env.HOST}"
 
            sh 'node -v'
            sh 'npm prune'
@@ -47,7 +44,7 @@ pipeline {
 
        stage('OWASP Zap') {
          steps {
-           sh 'zap-cli quick-scan --self-contained http://${env.TARGET}'
+           sh 'zap-cli quick-scan --self-contained http://${env.PORT}:${env.HOST}'
          }
        }
 
