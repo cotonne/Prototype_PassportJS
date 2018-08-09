@@ -17,9 +17,18 @@
     "passport-http-bearer": "^1.0.1"
   },
   "devDependencies": {
+    "eslint-plugin-security": "^1.4.0",
     "jest": "^23.4.2"
   },
   "jest": {
     "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "security"
+    ],
+    "extends": [
+      "plugin:security/recommended"
+    ]
   }
 }
