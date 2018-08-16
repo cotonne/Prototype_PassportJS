@@ -18,6 +18,12 @@ pipeline {
          }
        }
 
+       stage('Lint') {
+         steps {
+           sh 'npm run lint'
+         }     
+       }
+
        stage('Audit') {
          steps {
            sh 'npm audit'
@@ -52,6 +58,7 @@ pipeline {
        stage('Mozilla Observatory') {
          steps {
            sh "httpobs-local-scan --http-port ${env.PORT} ${env.HOST}"
+           step([$class: 'LogParserPublisher', useProjectRule: true, projectRulePath: 'jenkins-rule-logparser'])
          }
        }
 
