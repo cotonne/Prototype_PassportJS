@@ -7,13 +7,18 @@ pipeline {
           }
        }
 
-       stage('Test'){
+       stage('Build'){
          steps {
            print "Environment will be : ${env.PORT}:${env.HOST}"
 
            sh 'node -v'
            sh 'npm prune'
            sh 'npm install'
+          }
+       }
+
+       stage('Test'){
+         steps {
            sh 'npm test'
          }
        }
