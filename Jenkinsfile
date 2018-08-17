@@ -32,6 +32,7 @@ pipeline {
        stage('Audit') {
          steps {
            sh 'npm audit'
+           step([$class: 'LogParserPublisher', projectRulePath: 'jenkins-rules-logparser-audit', unstableOnWarning: true, useProjectRule: true])
          }
        }
  
