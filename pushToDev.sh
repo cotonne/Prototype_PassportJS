@@ -2,6 +2,6 @@
 
 killall node
 
-node index.js &
+npm start &
 
-sleep 10
+sleep 3

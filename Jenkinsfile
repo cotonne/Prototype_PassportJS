@@ -19,7 +19,7 @@ pipeline {
 
        stage('Test'){
          steps {
-           sh 'npm test'
+           sh 'npm run test'
          }
        }
 
@@ -31,8 +31,11 @@ pipeline {
 
        stage('Audit') {
          steps {
-           sh 'npm audit'
-           step([$class: 'LogParserPublisher', projectRulePath: 'jenkins-rules-logparser-audit', unstableOnWarning: true, useProjectRule: true])
+           try {
+             sh 'npm audit'
+           } catch (exc) {
+             step([$class: 'LogParserPublisher', projectRulePath: 'jenkins-rules-logparser-audit', unstableOnWarning: true, useProjectRule: true])
+           }
          }
        }
  

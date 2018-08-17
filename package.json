@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "lint": "node_modules/.bin/eslint src/ routes/ models/ *.js"
+    "lint": "node_modules/.bin/eslint src/ routes/ models/ *.js",
+    "test": "node_modules/.bin/jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
