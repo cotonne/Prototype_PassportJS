@@ -30,13 +30,11 @@ pipeline {
        }
 
        stage('Audit') {
-         steps {
-           try {
-             sh 'npm audit'
-           } catch(e) {
-           }
+         try {
+           sh 'npm audit'
+         } catch(e) {
            step([$class: 'LogParserPublisher', projectRulePath: 'jenkins-rules-logparser-audit', unstableOnWarning: true, useProjectRule: true])
-         }
+        }
        }
  
        stage('Sonar'){
