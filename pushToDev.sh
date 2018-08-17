@@ -2,6 +2,6 @@
 
 killall node
 
-node app.js &
+node index.js &
 
 sleep 10

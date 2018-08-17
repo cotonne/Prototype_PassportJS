@@ -2,12 +2,12 @@ module.exports = {
     "env": {
         "browser": true,
         "node": true,
-	"mongo": true,
-	"es6": true
+        "mongo": true,
+        "es6": true,
+        "jest": true
     },
-    "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 5
+        "ecmaVersion": 6
     },
     "rules": {
         "indent": [
@@ -20,7 +20,7 @@ module.exports = {
         ],
         "quotes": [
             "error",
-            "double"
+            "single"
         ],
         "semi": [
             "error",
@@ -28,9 +28,10 @@ module.exports = {
         ]
     },
     "plugins": [
-      "security"
+        "security"
     ],
     "extends": [
-      "plugin:security/recommended"
+        "eslint:recommended",
+        "plugin:security/recommended"
     ]
 };
