@@ -14,7 +14,7 @@ function greetings(req, res) {
     }
 }
 
-function routerGithub(myPassport) {
+function routerGithub(strategy, myPassport) {
     const router = express.Router();
 
     // Route if authentication failed
@@ -24,12 +24,13 @@ function routerGithub(myPassport) {
 
 
     // Route to start OAuth2 authentication flow with Github
-    router.get('/github', myPassport.authenticate('github'));
+
+    router.get('/github', myPassport.authenticate(strategy));
 
     // Route for callback from GitHub
     router.get('/github/callback',
         // Get user profile with authorization code and access token
-        myPassport.authenticate('github', {session: false}),
+        myPassport.authenticate(strategy, {session: false}),
         greetings
     );
     return router;

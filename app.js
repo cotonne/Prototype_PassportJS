@@ -1,4 +1,4 @@
-function init(myPassport) {
+function init(strategy, myPassport) {
     var createError = require('http-errors');
     var express = require('express');
     var path = require('path');
@@ -27,7 +27,7 @@ function init(myPassport) {
     app.use('/users', usersRouter);
 
     // route for sign-in
-    const SigninRouter = require('./routes/signin.js').routerGithub(myPassport);
+    const SigninRouter = require('./routes/signin.js').routerGithub(strategy, myPassport);
     app.use('/signin', SigninRouter);
 
     // catch 404 and forward to error handler
