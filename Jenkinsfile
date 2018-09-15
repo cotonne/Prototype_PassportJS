@@ -59,7 +59,7 @@ pipeline {
 
        stage('OWASP Zap') {
          steps {
-           sh "zap-cli quick-scan --self-contained --spider -o '-config api.disablekey=true' http://${env.HOST}:${env.PORT}"
+           sh "zap-cli quick-scan --scanners xss --self-contained --spider -o '-config api.disablekey=true' http://${env.HOST}:${env.PORT}"
          }
        }
 
