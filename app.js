@@ -24,7 +24,8 @@ function init(strategy, myPassport) {
     app.use(myPassport.initialize());
 
     app.use('/', indexRouter);
-    app.use('/users', usersRouter);
+    const router = usersRouter(strategy, myPassport);
+    app.use('/users', router);
 
     // route for sign-in
     const SigninRouter = require('./routes/signin.js').routerGithub(strategy, myPassport);
@@ -36,11 +37,11 @@ function init(strategy, myPassport) {
     });
 
     // error handler
-    app.use(function (err, req, res) {
+    app.use(function (err, req, res, next) {
+        console.log(err);
         // set locals, only providing error in development
         res.locals.message = err.message;
         res.locals.error = req.app.get('env') === 'development' ? err : {};
-
         // render the error page
         res.status(err.status || 500);
         res.render('error');
