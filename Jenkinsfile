@@ -57,11 +57,11 @@ pipeline {
        }
 
 
-       stage('OWASP Zap') {
-         steps {
-           sh "zap-cli quick-scan --scanners xss --self-contained --spider -o '-config api.disablekey=true' http://${env.HOST}:${env.PORT}"
-         }
-       }
+//       stage('OWASP Zap') {
+//         steps {
+//           sh "zap-cli quick-scan --scanners xss --self-contained --spider -o '-config api.disablekey=true' http://${env.HOST}:${env.PORT}"
+//         }
+//       }
 
 
        stage('Mozilla Observatory') {
